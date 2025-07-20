@@ -3,7 +3,7 @@ const BASE = "http://127.0.0.1:8000";   // 서버 기본 주소
 
 /* 1) 회원가입 -------------------------------------------------------------- */
 async function register(username, password) {
-  const res = await fetch(`${BASE}/register`, {
+  const res = await fetch(`${BASE}/register/protecter`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ username, password }),
