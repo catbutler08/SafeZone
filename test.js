@@ -2,11 +2,11 @@
 const BASE = "http://127.0.0.1:8000";   // 서버 기본 주소
 
 /* 1) 회원가입 -------------------------------------------------------------- */
-async function register(username, password) {
-  const res = await fetch(`${BASE}/register/protecter`, {
+async function register(name,email,username, password,telephone) {
+  const res = await fetch(`${BASE}/auth/register/protecter`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ username, password }),
+    body: new URLSearchParams({ name,email,username, password,telephone }),
   });
 
   if (res.ok) {
@@ -20,7 +20,7 @@ async function register(username, password) {
 
 /* 2) 로그인 & JWT 발급 ------------------------------------------------------ */
 async function login(username, password) {
-  const res = await fetch(`${BASE}/token`, {
+  const res = await fetch(`${BASE}/auth/token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({ username, password }),
@@ -34,25 +34,18 @@ async function login(username, password) {
 }
 
 /* 3) 보호된 /me 엔드포인트 호출 ------------------------------------------- */
-async function callMe(token) {
-  const res = await fetch(`${BASE}/me`, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
 
-  if (!res.ok) throw new Error(`[me] ${res.status} ${await res.text()}`);
-  const data = await res.json();
-  console.log("[me] response:", data); // { username: "..." }
-}
 
 /* 실행 순서 ---------------------------------------------------------------- */
 ;(async () => {
   try {
-    const username = "cliUser";
-    const password = "cliPassword";
-
-    await register(username, password);          // 1. 등록(중복 시 400 무시)
-    const token = await login(username, password); // 2. 로그인
-    await callMe(token);                         // 3. /me 확인
+    const username = "cliUser12";
+    const password = "cliPassword12";
+    const email = "example@gmail.com"
+    const name = "park wu"
+    const telephone = "010-3828-2901"
+    await register(name,email,username, password,telephone);          // 1. 등록(중복 시 400 무시)
+    const token = await login(username, password); // 2. 로그인                      // 3. /me 확인
   } catch (err) {
     console.error(err);
     process.exit(1);
