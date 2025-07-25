@@ -13,7 +13,12 @@
 
   • REST API: 회원가입, 로그인, 프로필 조회, 계정 삭제, GPS 업로드
 
-  • OpenAPI(Swagger) 자동 문서화
-
 > TODO: 이메일 인증, 실시간 알림 푸시 기능 추가 예정
->
+
+기술 스택
+|영역|사용 기술|
+|------|---|
+|웹 프레임워크|FastAPI (Python 3.11+)|
+|인증·보안|python‑jose, passlib[bcrypt]|
+|데이터베이스|MongoDB|
+|데이터 모델|Pydantic|
