@@ -20,20 +20,18 @@
 |데이터 모델|Pydantic|
 
 ## 폴더 구조 (요약)
- SafeZone-main/
+    SafeZone-main/
+    ├── main/            # 백엔드 코드
+    │   ├── core/        # 설정·보안 유틸리티
+    │   ├── db/          # MongoDB 클라이언트
+    │   ├── routers/     # API 엔드포인트
+    │   ├── schemas/     # Pydantic 모델
+    │   └── main.py
+    └── test/
+        └── test.js      # 예시 스크립트
+> 환경 변수: `.env` 파일에 `SECRET_KEY`, `MONGO_URI` 등을 설정하세요
+## 빠른 시작
+    # 개발 서버 실행
+    uvicorn main.main:app --reload --port 8000
 
- ├── main/            # 백엔드 코드
-
- │   ├── core/        # 설정·보안 유틸리티
-
- │   ├── db/          # MongoDB 클라이언트
-
- │   ├── routers/     # API 엔드포인트
-
- │   ├── schemas/     # Pydantic 모델
-
- │   └── main.py
-
- └── test/
-
-     └── test.js      # 예시 스크립트
+##API 요약 (임시)
