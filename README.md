@@ -21,11 +21,19 @@
 
 ## 폴더 구조 (요약)
 SafeZone-main/
+
 ├── main/            # 백엔드 코드
+
 │   ├── core/        # 설정·보안 유틸리티
+
 │   ├── db/          # MongoDB 클라이언트
+
 │   ├── routers/     # API 엔드포인트
+
 │   ├── schemas/     # Pydantic 모델
+
 │   └── main.py
+
 └── test/
+
     └── test.js      # 예시 스크립트
