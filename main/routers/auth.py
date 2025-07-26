@@ -36,6 +36,35 @@ def register_protecter(
     })
     return {"msg": "회원가입 완료"}
 
+
+#피보호자 회원가입 *구분: 피보호자 필요 정보는 위와 다르다
+
+@router.post("/register/ward", status_code=201)
+def register_user(
+    name: str = Form(...),
+    email: str = Form(...),
+    username: str = Form(...),
+    password: str = Form(...),
+    telephone: str = Form(...)
+):
+    for field, value in (("username",username),("email",email),("telephone",telephone)):
+        if users.find_one({field: value}):
+            raise HTTPException(status_code=400, detail=f"이미 존재화는 ${field}")
+        if not is_valid(email):
+            raise HTTPException(status_code=401, detail="올바르지 않은 이메일")
+    hashed = security.hash_password(password)
+    users.insert_one({
+        "name": name,
+        "email": email,
+        "username": username,
+        "password": hashed,
+        "role": "Ward",
+        "telephone": telephone
+    })
+    return {"msg": "회원가입 완료"}
+
+
+
 # 로그인
 @router.post("/token", response_model=Token)
 def login(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -53,3 +82,5 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     if not user:
         raise HTTPException(status_code=404, detail="사용자 없음")
     return user
+
+

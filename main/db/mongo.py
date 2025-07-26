@@ -9,4 +9,5 @@ db = client[settings.DB_NAME]
 users = db["user"]
 gpses = db["gps"]
 
+
 gpses.create_index([("createdAt", ASCENDING)], expireAfterSeconds=7776000)
