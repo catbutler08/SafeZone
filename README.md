@@ -29,9 +29,26 @@
     │   └── main.py
     └── test/
         └── test.js      # 예시 스크립트
-> 환경 변수: `.env` 파일에 `SECRET_KEY`, `MONGO_URI` 등을 설정하세요
-## 빠른 시작
-    # 개발 서버 실행
-    uvicorn main.main:app --reload --port 8000
+
+## 환경 변수
+`.env` 파일 또는 환경 변수로 다음 값을 설정합니다.
+
+|변수|설명|
+|----|---|
+|`SECRET_KEY`|JWT 서명에 사용될 비밀 키|
+|`MONGO_URI`|MongoDB 접속 문자열|
+|`DB_NAME`|사용할 데이터베이스 이름|
+
+## 설치 및 실행
+```bash
+pip install -r requirements.txt       # 의존성 설치
+uvicorn main.main:app --reload --port 8000  # 로컬 서버 실행
+```
+
+## 테스트 실행
+백엔드 API 테스트는 Node 18 이상에서 다음과 같이 실행합니다.
+```bash
+node test/test.js
+```
 
 ##API 요약 (임시)
